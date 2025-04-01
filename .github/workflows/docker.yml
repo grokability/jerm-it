@@ -1,4 +1,4 @@
-# Snipe-IT Docker image build for hub.docker.com
+# jerm-IT Docker image build for hub.docker.com
 name: Docker images
 
 # Run this Build for all pushes to 'master' or develop branch, or tagged releases.
@@ -20,8 +20,8 @@ permissions:
 
 jobs:
   docker:
-    # Ensure this job never runs on forked repos. It's only executed for 'snipe/snipe-it'
-    if: github.repository == 'snipe/snipe-it'
+    # Ensure this job never runs on forked repos. It's only executed for 'jerm/snipe-it'
+    if: github.repository == 'jerm/snipe-it'
     runs-on: ubuntu-latest
     env:
       # Define tags to use for Docker images based on Git tags/branches (for docker/metadata-action)
@@ -58,20 +58,20 @@ jobs:
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
       ###############################################
-      # Build/Push the 'snipe/snipe-it' image
+      # Build/Push the 'jerm/snipe-it' image
       ###############################################
       # https://github.com/docker/metadata-action
       # Get Metadata for docker_build step below
-      - name: Sync metadata (tags, labels) from GitHub to Docker for 'snipe-it' image
+      - name: Sync metadata (tags, labels) from GitHub to Docker for 'jerm-it' image
         id: meta_build
         uses: docker/metadata-action@v5
         with:
-          images: snipe/snipe-it
+          images: jerm/snipe-it
           tags: ${{ env.IMAGE_TAGS }}
           flavor: ${{ env.TAGS_FLAVOR }}
 
       # https://github.com/docker/build-push-action
-      - name: Build and push 'snipe-it' image
+      - name: Build and push 'jerm-it' image
         id: docker_build
         uses: docker/build-push-action@v6
         with:
