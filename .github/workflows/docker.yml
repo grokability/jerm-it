@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - master
+      - main
       - develop
     tags:
       - 'v**'
@@ -21,7 +22,7 @@ permissions:
 jobs:
   docker:
     # Ensure this job never runs on forked repos. It's only executed for 'jerm/snipe-it'
-    if: github.repository == 'jerm/snipe-it'
+    if: github.repository == 'jerm/jerm-it'
     runs-on: ubuntu-latest
     env:
       # Define tags to use for Docker images based on Git tags/branches (for docker/metadata-action)
@@ -58,7 +59,7 @@ jobs:
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
       ###############################################
-      # Build/Push the 'jerm/snipe-it' image
+      # Build/Push the 'jerm/jerm-it' image
       ###############################################
       # https://github.com/docker/metadata-action
       # Get Metadata for docker_build step below
@@ -66,7 +67,7 @@ jobs:
         id: meta_build
         uses: docker/metadata-action@v5
         with:
-          images: jerm/snipe-it
+          images: jerm/jerm-it
           tags: ${{ env.IMAGE_TAGS }}
           flavor: ${{ env.TAGS_FLAVOR }}
 
