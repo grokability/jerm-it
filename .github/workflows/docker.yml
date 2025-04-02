@@ -59,7 +59,7 @@ jobs:
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
       ###############################################
-      # Build/Push the 'jerm/jerm-it' image
+      # Build/Push the 'jermgroks/jerm-it' image
       ###############################################
       # https://github.com/docker/metadata-action
       # Get Metadata for docker_build step below
@@ -67,7 +67,7 @@ jobs:
         id: meta_build
         uses: docker/metadata-action@v5
         with:
-          images: jerm/jerm-it
+          images: jermgroks/jerm-it
           tags: ${{ env.IMAGE_TAGS }}
           flavor: ${{ env.TAGS_FLAVOR }}
 
