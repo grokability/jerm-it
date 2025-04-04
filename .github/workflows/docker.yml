@@ -22,8 +22,8 @@ permissions:
 jobs:
   docker:
     # Ensure this job never runs on forked repos. It's only executed for 'jerm/snipe-it'
-    if: github.repository == 'jerm/jerm-it'
-    runs-on: ubuntu-latest
+    if: github.repository == 'grokability/jerm-it'
+    runs-on: ubuntu-24.04-arm
     env:
       # Define tags to use for Docker images based on Git tags/branches (for docker/metadata-action)
       # For a new commit on default branch (master), use the literal tag 'latest' on Docker image.
@@ -78,7 +78,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/arm64
           # For pull requests, we run the Docker build (to ensure no PR changes break the build),
           # but we ONLY do an image push to DockerHub if it's NOT a PR
           push: ${{ github.event_name != 'pull_request' }}
