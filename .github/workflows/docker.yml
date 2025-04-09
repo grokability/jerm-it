@@ -23,7 +23,7 @@ jobs:
   docker:
     # Ensure this job never runs on forked repos. It's only executed for 'jerm/snipe-it'
     if: github.repository == 'grokability/jerm-it'
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-latest-arm
     env:
       # Define tags to use for Docker images based on Git tags/branches (for docker/metadata-action)
       # For a new commit on default branch (master), use the literal tag 'latest' on Docker image.
